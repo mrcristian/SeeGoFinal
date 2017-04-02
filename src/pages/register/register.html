@@ -1,0 +1,146 @@
+<!--
+  Generated template for the RegisterPropietario page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div padding>
+    <ion-segment [(ngModel)]="tipoUsuario">
+      <ion-segment-button value="estudiante">
+        Estudiante
+      </ion-segment-button>
+      <ion-segment-button value="propietario">
+        Propietario
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tipoUsuario">
+    <ion-list *ngSwitchCase="'estudiante'">
+      <form #form="ngForm">
+        <ion-row margin-bottom>
+
+          <ion-item ion-col col-12>
+            <h2>Datos de sesión</h2>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Usuario</ion-label>
+            <ion-input name="usuario" type="text" required [(ngModel)]="estudiante.user"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Password</ion-label>
+            <ion-input name="password" type="password" required [(ngModel)]="estudiante.pass"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-12>
+            <h2>Datos Personales</h2>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>No Identificacion</ion-label>
+            <ion-input name="noIdentificacion" type="text" required [(ngModel)]="estudiante.noIdentificacion"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Nombre</ion-label>
+            <ion-input name="nombre" type="text" required [(ngModel)]="estudiante.nombre"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Apellido</ion-label>
+            <ion-input name="apellido" type="text" required [(ngModel)]="estudiante.apellido"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Dirección</ion-label>
+            <ion-input name="direccion" type="text" required [(ngModel)]="estudiante.direccion"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Telefono</ion-label>
+            <ion-input name="telefono" type="text" required [(ngModel)]="estudiante.telefono"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>ciudad de origen</ion-label>
+            <ion-input name="ciudadOrigen" type="text" required [(ngModel)]="estudiante.ciudadOrigen"></ion-input>
+          </ion-item>
+        </ion-row>
+      </form>
+      <ion-row>
+        <button ion-col col-5 col-md-5 col-lg-5 ion-button block (click)="exit()">Cancelar</button>
+        <button ion-col offset-2 col-5 offset-md-2 col-md-5 offset-lg-2 col-lg-5 ion-button block (click)="addUsuario()">Registrar</button>
+      </ion-row>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'propietario'">
+      <form #form="ngForm">
+        <ion-row margin-bottom>
+
+          <ion-item ion-col col-12>
+            <h2>Datos de sesión</h2>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Usuario</ion-label>
+            <ion-input name="usuario" type="text" required [(ngModel)]="propietario.user"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Password</ion-label>
+            <ion-input name="password" type="password" required [(ngModel)]="propietario.pass"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-12>
+            <h2>Datos Personales</h2>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>No Identificacion</ion-label>
+            <ion-input name="noIdentificacion" type="text" required [(ngModel)]="propietario.noIdentificacion"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Nombre</ion-label>
+            <ion-input name="nombre" type="text" required [(ngModel)]="propietario.nombre"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Telefono</ion-label>
+            <ion-input name="telefono" type="text" required [(ngModel)]="propietario.telefono"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Dirección</ion-label>
+            <ion-input name="direccion" type="text" required [(ngModel)]="propietario.direccion"></ion-input>
+          </ion-item>
+
+          <ion-item ion-col col-6 col-md-6>
+            <ion-label floating>Correo</ion-label>
+            <ion-input name="correo" type="text" required [(ngModel)]="propietario.correo"></ion-input>
+          </ion-item>
+
+          <!--<ion-fab right bottom (click)="goToAddApartamento()">
+            <button ion-fab icon-only color="secondary"><ion-icon name="add"></ion-icon></button>
+          </ion-fab>-->
+
+        </ion-row>
+      </form>
+      <ion-row>
+        <button ion-col col-5 col-md-5 col-lg-5 ion-button block (click)="exit()">Cancelar</button>
+        <button ion-col offset-2 col-5 offset-md-2 col-md-5 offset-lg-2 col-lg-5 ion-button block (click)="addPropietario()">Registrar</button>
+      </ion-row>
+    </ion-list>
+  </div>
+</ion-content>

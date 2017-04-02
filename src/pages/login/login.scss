@@ -1,0 +1,42 @@
+page-login {
+    .login-bg{
+        background-image: url('../../assets/images/imagenBase.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;                               
+    }
+    .login-main{
+        display: flex;
+        flex-direction: column;
+        height: 100%;  
+        width: 100%;           
+    }
+    .login-inputs{
+        display: flex;                        
+        flex-direction: column;
+        justify-content: center;
+    }
+    .login-title
+    {
+        font-family: 'JACK';
+        font-size: 2em;
+        color: #FFFFFF;
+        text-align: center;
+    }          
+    .login-img{          
+        background-image: url('../../assets/images/house.png');
+        align-items: up;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;  
+        height: 270px; 
+        padding: 0px;
+    }
+    .login-buttons{      
+        padding: 15px;                       
+        align-content: center;
+        align-items: center;        
+    }
+
+    
+}

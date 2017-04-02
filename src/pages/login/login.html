@@ -1,0 +1,46 @@
+<ion-content class="login-bg" padding>
+  <div class="login-main">
+
+    <ion-row>
+
+      <ion-col ion-col col-12 offset-md-8 col-md-4 offset-lg-8 col-lg-4>
+        <h1 class="login-title">See Go</h1>
+      </ion-col>
+
+      <ion-col ion-col col-12 offset-md-8 col-md-4 offset-lg-8 col-lg-4 no-lines>
+        <ion-item class="login-img" color="itemLight"></ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <div class="login-inputs">
+
+      <ion-row>
+
+        <ion-col col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8>
+          <ion-item color="itemLight">
+            <ion-label color="labelLight" floating>Usuario</ion-label>
+            <ion-input name="usuario" type="text" [(ngModel)]="user"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8>
+          <ion-item color="itemLight">
+            <ion-label color="labelLight" floating>Password</ion-label>
+            <ion-input name="password" type="password" [(ngModel)]="pass"></ion-input>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+
+    </div>
+    <br>
+    <div class="login-buttons">
+      <ion-row>            
+        <button ion-col col-12 offset-md-7 col-md-5 offser-lg-7 col-lg-5 ion-button ion-button block (click)="login()">Ingresa</button>
+        <br>        
+        <button ion-col col-12 offset-md-7 col-md-5 offser-lg-7 col-lg-5 ion-button clear color="light" (click)="register()">Registrate</button>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>
