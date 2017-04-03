@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 // import {RegisterPropietarioPage} from '../register-propietario/register-propietario';
 
-import {EstudianteService} from '../../providers/estudiante-service';
-import {Estudiante} from '../../models/estudiante';
+import { EstudianteService } from '../../providers/estudiante-service';
+import { Estudiante } from '../../models/estudiante';
 /*
   Generated class for the RegisterUsuario page.
 
@@ -17,9 +17,13 @@ import {Estudiante} from '../../models/estudiante';
 })
 export class RegisterUsuarioPage {
 
-  estudiante:Estudiante;
+  estudiante: Estudiante;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public service:EstudianteService) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public service: EstudianteService,
+    public loading: LoadingController,
+    public toast: ToastController) {
     this.estudiante = new Estudiante();
   }
 
@@ -29,15 +33,13 @@ export class RegisterUsuarioPage {
   // goPropietario(){
   //   this.navCtrl.setRoot(RegisterPropietarioPage)
   // }
-  goUsuario(){
-    
+  goUsuario() {
+
   }
-  addUsuario(){    
-    this.estudiante.tipo = "user";
-    this.service.data.push(this.estudiante);
-    this.navCtrl.pop();
+  addUsuario() {
+
   }
-  exit(){
+  exit() {
 
   }
 

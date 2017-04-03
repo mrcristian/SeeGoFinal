@@ -1,6 +1,9 @@
-import {Sesion} from '../models/sesion';
 
-export class Estudiante extends Sesion {
+export class Estudiante{
+    _id:string
+    user: string;
+    pass: string;
+    tipo: string;
     noIdentificacion: string;
     nombre: string;
     apellido: string;

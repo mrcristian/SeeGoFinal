@@ -8,7 +8,7 @@ import { URL } from '../app/app.config';
 @Injectable()
 export class EstudianteService {
     data: Estudiante[];
-
+    estudiante: Estudiante;
 
     constructor(public http: Http) {
         // this.loadData();
@@ -19,24 +19,27 @@ export class EstudianteService {
     //     ];
     // }
 
-    registrar(estudiante: Estudiante) {
+    registrar(estudiante: Estudiante):Observable <{success: boolean, message: string}> {
         let contentType = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions(contentType);
-        return this.http.post(URL + "estudiantes/registrar", estudiante, options).map((response) => {
+        return this.http.post(URL + "/estudiantes/registrar", estudiante, options).map((response) => {
             return response.json();
         }).catch((err) => {
             return Observable.throw(err);
         });
     }
 
-    validar(user: string, pass: string): Observable<{ success: boolean, estudiante: Estudiante }> {
+    validar(user: string, pass: string): Observable<{ success: boolean, user: Estudiante }> {
         const body = { user: user, pass: pass };
         return this.http.post(URL + "/estudiantes/login", body).map((response) => {
-            return response.json();
+            let res = response.json();
+            console.log(res.user);
+            return res;
         }).catch((err) => {
             return Observable.throw(err);
         });
     }
+
 
 
 

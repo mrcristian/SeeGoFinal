@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController,LoadingController } from 'ionic-angular';
-// import {Observable} from 'rxjs';
+import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Observable } from 'rxjs';
 
 import { HomeEstudiantePage } from '../home-estudiante/home-estudiante';
-import {RegisterPage} from '../register/register';
+import { RegisterPage } from '../register/register';
 import { EstudianteService } from '../../providers/estudiante-service';
 import { AlertController } from 'ionic-angular';
-import { Estudiante } from "../../models/estudiante";
+import { PropietarioService } from "../../providers/propietario-service";
+
 
 /*
   Generated class for the Login page.
@@ -23,14 +24,14 @@ export class LoginPage {
   user: string;
   pass: string;
   tipo: string;
-  estudiante:Estudiante;
 
   constructor(public navCtrl: NavController,
-   public navParams: NavParams,
+    public navParams: NavParams,
     public serviceEst: EstudianteService,
+    public servicePro: PropietarioService,
     public alertCtrl: AlertController,
-    public toast:ToastController,
-    public loading:LoadingController) {
+    public toast: ToastController,
+    public loading: LoadingController) {
 
   }
 
@@ -43,27 +44,37 @@ export class LoginPage {
   }
   login() {
     let loading = this.loading.create({
-      content:"Cargando..."
+      content: "Cargando..."
     });
     loading.present();
-    this.serviceEst.validar(this.user,this.pass).subscribe(res=>{       
-      loading.dismiss();
-      if(res.success){               
-        this.goHome(this.estudiante.tipo);
+    this.serviceEst.validar(this.user, this.pass).subscribe(res => {
+      if (res.success) {
+        loading.dismiss();
+        this.goHome(res.user.tipo);
       }
-      else{
-        this.showAlert();
+      else {
+        this.servicePro.validar(this.user, this.pass).subscribe(res => {
+          loading.dismiss();
+          if (res.success) {
+            this.goHome(res.user.tipo);
+          }
+          else {
+            this.showAlert();
+          }
+        });
       }
     });
   }
   goHome(tipo: string) {
-    console.log(this.tipo);
     switch (tipo) {
       case "user":
         {
           this.navCtrl.setRoot(HomeEstudiantePage);
           break;
         }
+      case "propietario": {
+        console.log("Cargar pagina de propietario");
+      }
     }
   }
   showAlert() {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { EstudianteService } from '../../providers/estudiante-service';
 import { PropietarioService } from '../../providers/propietario-service';
@@ -22,7 +22,12 @@ export class RegisterPage {
   estudiante: Estudiante;
   propietario: Propietario;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public serviceEst: EstudianteService, public serviceProp: PropietarioService) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public serviceEst: EstudianteService,
+    public serviceProp: PropietarioService,
+    public loading: LoadingController,
+    public toast: ToastController) {
     this.estudiante = new Estudiante();
     this.propietario = new Propietario();
   }
@@ -33,15 +38,25 @@ export class RegisterPage {
 
   addUsuario() {
     this.estudiante.tipo = "user";
-    this.serviceEst.data.push(this.estudiante);
+    let loading = this.loading.create({ content: "Ingresando..." });
+    loading.present();
+    this.serviceEst.registrar(this.estudiante).subscribe(response => {
+      loading.dismiss();
+      this.toast.create({ message: response.message, duration: 3000 }).present();
+    });
     this.navCtrl.pop();
   }
   addPropietario() {
     this.propietario.tipo = "propietario";
-    this.serviceProp.data.push(this.propietario);
+    let loading = this.loading.create({ content: "Ingresando..." });
+    loading.present();
+    this.serviceProp.registrar(this.propietario).subscribe(response => {
+      loading.dismiss();
+      this.toast.create({ message: response.message, duration: 3000 }).present();
+    });
     this.navCtrl.pop();
   }
-  exit(){
+  exit() {
     this.navCtrl.pop();
   }
 

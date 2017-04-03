@@ -5,8 +5,8 @@ export class Apartamento {
     idPropietario: string;
     telefono: string;
     correo: string;
-    //Detalles    
-    departamentoId: number;
+    //Detalles        
+    _id:string;
     costo: number;
     tamañoM2: number;
     ubicacion: string;

@@ -80,7 +80,7 @@
       </form>
       <ion-row>
         <button ion-col col-5 col-md-5 col-lg-5 ion-button block (click)="exit()">Cancelar</button>
-        <button ion-col offset-2 col-5 offset-md-2 col-md-5 offset-lg-2 col-lg-5 ion-button block (click)="addUsuario()">Registrar</button>
+        <button ion-col offset-2 col-5 offset-md-2 col-md-5 offset-lg-2 col-lg-5 ion-button block (click)="addUsuario()" [disabled]="!form.valid">Registrar</button>
       </ion-row>
     </ion-list>
 
