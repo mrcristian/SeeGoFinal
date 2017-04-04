@@ -1,67 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Apartamento } from '../models/apartamento';
+import { Observable } from "rxjs/Observable";
+import { Http, RequestOptions, Headers } from '@angular/http';
+import {URL} from '../app/app.config';
 
 @Injectable()
-export class ApartamentoService {
-    data: Apartamento[]
+export class ApartamentoService {    
 
-    constructor() {
-        this.loadData();
-    }
-    loadData() {
-    //     this.data = [
-    //         {
-    //             idPropietario: "100",
-    //             telefono: "3213214325",
-    //             correo: "p1@gmail.com",                
-    //             costo: 600000,
-    //             tamañoM2: 7,
-    //             ubicacion: "Calle 1 # 10-14",
-    //             descripcion: "Apartamento comodo para pareja",
-    //             serviciosBasicos: true,
-    //             internet: false,
-    //             alimentacion: true,
-    //             tv: false,
-    //             imagen: "http://images.locanto.com.co/1146921655/HERMOSOS-Y-MODERNOS-APARTAMENTOS-Y-APARTAESTUDIOS-PARA-LA-VENTA_3.jpg",
-    //             interesados: 2,
-    //             comentarios: []
-    //         },
-    //         {
-    //             idPropietario: "101",
-    //             telefono: "3453456789",
-    //             correo: "p2@gmail.com",                
-    //             costo: 500000,
-    //             tamañoM2: 6,
-    //             ubicacion: "Calle 2 # 22-14",
-    //             descripcion: "Apartamento con buena vista",
-    //             serviciosBasicos: true,
-    //             internet: true,
-    //             alimentacion: false,
-    //             tv: false,
-    //             imagen: "https://imganuncios.mitula.net/apartamento_cerca_del_nuevo_centro_comercial_apartamento_cerca_del_7380123453412070626.jpg",
-    //             interesados: 4,
-    //             comentarios: []
-    //         },
-    //         {
-    //             idPropietario: "101",
-    //             telefono: "3453456789",
-    //             correo: "p2@gmail.com",                
-    //             costo: 550000,
-    //             tamañoM2: 8,
-    //             ubicacion: "Calle 3 # 2-14",
-    //             descripcion: "Apartamento grande ideal para una familia",
-    //             serviciosBasicos: true,
-    //             internet: false,
-    //             alimentacion: true,
-    //             tv: true,
-    //             imagen: "https://http2.mlstatic.com/D_NQ_NP_227425-MCO25450902626_032017-K.jpg",
-    //             interesados: 6,
-    //             comentarios: []
-    //         }
-    //     ];
+    constructor(public http:Http) {
     }
 
-    getApartamentos() {        
+    getDisponibles(): Observable<{data:any}> {
+        let body = {};
+        return this.http.post(URL + "/apartamentos/consultarDisponibles",body).map(response => {
+            return {data: response.json()};
+        }).catch(err => {
+            return Observable.throw(err);
+        });
     }
-
+    //   all(): Observable<Libro[]> {
+    //     return this.http.get(URL + "/books").map(response => {
+    //       return response.json();
+    //     }).catch(err => {
+    //       return Observable.throw(err);
+    //     });
+    //   }
 }

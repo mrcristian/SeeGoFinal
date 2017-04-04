@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ApartamentoService } from '../../providers/apartamento-service';
 import { Apartamento } from "../../models/apartamento";
 
@@ -16,16 +16,28 @@ import { Apartamento } from "../../models/apartamento";
 })
 export class HomeEstudiantePage {
 
-  apartamentos:Apartamento[];
-  criterio:string;
-  filtro:string;
+  apartamentos: Apartamento[];
+  criterio: string;
+  filtro: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public serviceApart:ApartamentoService) {
-    this.apartamentos=[];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public serviceApart: ApartamentoService,
+    public loading: LoadingController) {
+    this.apartamentos = [];
   }
 
   ionViewDidLoad() {
-    this.apartamentos = this.serviceApart.data;
+    this.cargarApartamentos();    
+  }
+  cargarApartamentos() {
+    let loading = this.loading.create({
+      content: "Cargando apartamentos..."
+    });    
+    loading.present();
+    this.serviceApart.getDisponibles().subscribe(response => { 
+      console.log(response)
+      loading.dismiss();
+      this.apartamentos = response.data;
+      console.log(this.apartamentos); });
   }
 
 }

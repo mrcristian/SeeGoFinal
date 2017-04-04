@@ -15,6 +15,7 @@ export class Apartamento {
     internet: boolean;
     alimentacion: boolean;
     tv: boolean;
+    visible:boolean;
     imagen: string;
     //Comentarios e interesados
     interesados:number;
