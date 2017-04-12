@@ -1,0 +1,124 @@
+<!--
+  Generated template for the AddApartamento page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Igresa los datos del inmueble</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #form="ngForm">
+    <ion-row margin-bottom>
+      <!--
+    costo: number;
+    tamañoM2: number;
+    ubicacion: string;
+    descripcion: string;
+    serviciosBasicos: boolean;
+    internet: boolean;
+    alimentacion: boolean;
+    tv: boolean;
+    visible:boolean;-->
+
+      <ion-item ion-col col-6 col-md-6>
+        <ion-label floating>Costo</ion-label>
+        <ion-input name="costo" type="number" required [(ngModel)]="apartamento.costo"></ion-input>
+      </ion-item>
+
+      <ion-item ion-col col-6 col-md-6>
+        <ion-label floating>Tamaño en m2</ion-label>
+        <ion-input name="size" type="number" required [(ngModel)]="apartamento.size"></ion-input>
+      </ion-item>
+
+      <ion-item ion-col col-6 col-md-6>
+        <ion-label floating>Dirección</ion-label>
+        <ion-input name="ubicacion" type="text" required [(ngModel)]="apartamento.ubicacion"></ion-input>
+      </ion-item>
+
+      <ion-item ion-col col-6 col-md-6>
+        <ion-label floating>Descripcion</ion-label>
+        <ion-input name="descripcion" type="text" required [(ngModel)]="apartamento.descripcion "></ion-input>
+      </ion-item>
+
+      <ion-item ion-col col-6 col-md-6>
+        <ion-label floating>url imagen</ion-label>
+        <ion-input name="img" type="text" required [(ngModel)]="apartamento.imagen "></ion-input>
+      </ion-item>
+
+      <ion-col ion-col col-6 col-md-6>
+        <ion-list name="servicios" radio-group [(ngModel)]="apartamento.servicios">
+          <ion-list-header>
+            ¿incluye<br> servicios?<br>
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Si</ion-label>
+            <ion-radio checked="true" value="si"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="no"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col ion-col col-6 col-md-6>
+        <ion-list name="servicios" radio-group [(ngModel)]="apartamento.internet">
+          <ion-list-header>
+            ¿Tiene <br>internet?<br>
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Si</ion-label>
+            <ion-radio checked="true" value="si"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="no"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col ion-col col-6 col-md-6>
+        <ion-list name="servicios" radio-group [(ngModel)]="apartamento.alimentacion">
+          <ion-list-header>
+            ¿Incluye<br> alimentación?<br>
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Si</ion-label>
+            <ion-radio checked="true" value="si"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="no"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col ion-col col-6 col-md-6>
+        <ion-list name="servicios" radio-group [(ngModel)]="apartamento.tv">
+          <ion-list-header>
+            ¿Tiene servicio <br> de TV?
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Si</ion-label>
+            <ion-radio checked="true" value="si"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="no"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+    </ion-row>
+
+  </form>
+
+  <ion-row>
+    <button ion-col col-5 col-md-5 col-lg-5 ion-button block (click)="exit()">Cancelar</button>
+    <button ion-col offset-2 col-5 offset-md-2 col-md-5 offset-lg-2 col-lg-5 ion-button block (click)="addInmueble()" [disabled]="!form.valid">Registrar</button>
+  </ion-row>
+</ion-content>

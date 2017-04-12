@@ -19,35 +19,6 @@ export class PropietarioService {
   constructor(public http: Http) {
   }
   loadData() {
-    // this.data = [
-    //   {
-    //     user: "pablo",
-    //     pass: "123",
-    //     tipo: "propietario",
-    //     noIdentificacion: "202020",
-    //     nombre: "pablo",
-    //     telefono: "3213213112",
-    //     direccion: "cra2",
-    //     correo: "pablo@gmail.com",
-    //     apartamentos: [{
-    //       idPropietario: "100",
-    //       telefono: "3213214325",
-    //       correo: "p1@gmail.com",          
-    //       costo: 600000,
-    //       tamañoM2: 7,
-    //       ubicacion: "Calle 1 # 10-14",
-    //       descripcion: "Apartamento comodo para pareja",
-    //       serviciosBasicos: true,
-    //       internet: false,
-    //       alimentacion: true,
-    //       tv: false,
-    //       imagen: "http://images.locanto.com.co/1146921655/HERMOSOS-Y-MODERNOS-APARTAMENTOS-Y-APARTAESTUDIOS-PARA-LA-VENTA_3.jpg",
-    //       interesados: 2,
-    //       comentarios: [{ productor: "pedro", descripcion: "bueno", fecha: "2000" }]
-    //     }]
-    //   }
-    //   //TENER CUIDADO EN EL MOMENTO DE CARGAR Y ASIGNAR APARTAMENTOS 
-    // ];
   }
   validar(user: string, pass: string): Observable<{ success: boolean, user: Propietario }> {
     const body = { user: user, pass: pass };
@@ -68,6 +39,16 @@ export class PropietarioService {
       return Observable.throw(err);
     });
   }
+  actualizarPropietario(id:string,propietario:any):Observable<{success:boolean, message:string}>{    
+    let contentType = new Headers({ "Content-Type": "application/json" });
+    let options = new RequestOptions(contentType);    
+    return this.http.put(URL+"/propietarios/"+id,propietario,options).map((response)=>{
+      return response.json();
+    }).catch(err=>{
+      return Observable.throw(err);
+    });
+  }
+
 
 
 }

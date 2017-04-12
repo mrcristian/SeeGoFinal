@@ -1,6 +1,7 @@
 import { Apartamento } from '../models/apartamento';
 
 export class Propietario {
+    _id:string;
     user: string;
     pass: string;
     tipo: string

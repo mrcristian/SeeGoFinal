@@ -32,8 +32,7 @@ export class EstudianteService {
     validar(user: string, pass: string): Observable<{ success: boolean, user: Estudiante }> {
         const body = { user: user, pass: pass };
         return this.http.post(URL + "/estudiantes/login", body).map((response) => {
-            let res = response.json();
-            console.log(res.user);
+            let res = response.json();            
             return res;
         }).catch((err) => {
             return Observable.throw(err);

@@ -8,14 +8,14 @@ export class Apartamento {
     //Detalles        
     _id:string;
     costo: number;
-    tamañoM2: number;
+    size: number;
     ubicacion: string;
     descripcion: string;
-    serviciosBasicos: boolean;
-    internet: boolean;
-    alimentacion: boolean;
-    tv: boolean;
-    visible:boolean;
+    serviciosBasicos: string;
+    internet: string;
+    alimentacion: string;
+    tv: string;
+    visible:string;
     imagen: string;
     //Comentarios e interesados
     interesados:number;

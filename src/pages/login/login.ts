@@ -7,6 +7,9 @@ import { RegisterPage } from '../register/register';
 import { EstudianteService } from '../../providers/estudiante-service';
 import { AlertController } from 'ionic-angular';
 import { PropietarioService } from "../../providers/propietario-service";
+import { HomePropietarioPage } from "../home-propietario/home-propietario";
+
+import {Storage} from '@ionic/storage'
 
 
 /*
@@ -31,7 +34,8 @@ export class LoginPage {
     public servicePro: PropietarioService,
     public alertCtrl: AlertController,
     public toast: ToastController,
-    public loading: LoadingController) {
+    public loading: LoadingController,
+    public storage:Storage) {
 
   }
 
@@ -50,12 +54,15 @@ export class LoginPage {
     this.serviceEst.validar(this.user, this.pass).subscribe(res => {
       if (res.success) {
         loading.dismiss();
+        //almacenando en storage el usuario
+        this.storage.set(res.user.tipo,JSON.stringify(res.user));
         this.goHome(res.user.tipo);
       }
       else {
         this.servicePro.validar(this.user, this.pass).subscribe(res => {
           loading.dismiss();
           if (res.success) {
+            this.storage.set(res.user.tipo,JSON.stringify(res.user));
             this.goHome(res.user.tipo);
           }
           else {
@@ -72,8 +79,9 @@ export class LoginPage {
           this.navCtrl.setRoot(HomeEstudiantePage);
           break;
         }
-      case "propietario": {
-        console.log("Cargar pagina de propietario");
+      case "propietario": {                        
+        this.navCtrl.setRoot(HomePropietarioPage);
+        break;
       }
     }
   }
