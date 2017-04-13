@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage'
 import { AddApartamentoPage } from "../add-apartamento/add-apartamento";
 import { PropietarioService } from "../../providers/propietario-service";
 import { LoginPage } from "../login/login";
+import { AddComentarioPage } from "../add-comentario/add-comentario";
 
 /*
   Generated class for the HomePropietario page.
@@ -90,15 +91,6 @@ export class HomePropietarioPage {
     });
     this.cargarMisInmuebles();
   }
-  // actualizarPropietario() {
-  //   let loading = this.loading.create({ content: "Ingresando..." });
-  //   loading.present();
-  //   this.servicePro.actualizarPropietario(this.me.noIdentificacion, this.armarCuerpoPropietario()).subscribe(responsePro => {
-  //     this.storage.set(this.me.tipo, JSON.stringify(this.me));
-  //     loading.dismiss();
-  //     this.toast.create({ message: "Apartamento agregado exitosamente", duration: 3000 }).present();
-  //   });
-  // }
   armarCuerpoInmueble() {
     return {
       //Propietario
@@ -128,12 +120,14 @@ export class HomePropietarioPage {
       buttons: [
         {
           text: 'Actualizar lista de inmuebles',
+          icon: 'md-refresh',
           handler: () => {
             this.cargarMisInmuebles();
           }
         },
         {
           text: 'Cerrar sesión',
+          icon: 'md-exit',
           handler: () => {
             this.navCtrl.setRoot(LoginPage);
           }
@@ -156,27 +150,31 @@ export class HomePropietarioPage {
       buttons: [
         {
           text: '¿ Qué precio tiene el arrendo ?',
+          icon: 'md-cash',
           handler: () => {
             this.mostrarAlerta("El arrendo cuesta: " + apartamento.costo);
           }
         },
         {
           text: '¿ cuál es el tamaño ? ',
+          icon: 'md-cube',
           handler: () => {
             this.mostrarAlerta("El apartamento tiene: " + apartamento.size + " m2")
           }
         },
         {
-          text: '¿ Posee servicios basicos ?',
+          text: '¿ Cubre servicios basicos ?',
+          icon: 'md-water',
           handler: () => {
             if (apartamento.serviciosBasicos == "si")
-              this.mostrarAlerta("El inmueble si posee servicios basicos");
+              this.mostrarAlerta("El inmueble si cubre servicios basicos");
             else
-              this.mostrarAlerta("El inmueble no posee servicios basicos");
+              this.mostrarAlerta("El inmueble no cubre servicios basicos");
           }
         },
         {
           text: '¿ Posee internet ?',
+          icon:'md-wifi',
           handler: () => {
             if (apartamento.internet == "si")
               this.mostrarAlerta("El inmueble si posee servicio de internet");
@@ -186,6 +184,7 @@ export class HomePropietarioPage {
         },
         {
           text: '¿ Posee alimentación ?',
+          icon:'md-restaurant',
           handler: () => {
             if (apartamento.alimentacion == "si")
               this.mostrarAlerta("El inmueble si posee servicio de alimentación");
@@ -195,6 +194,7 @@ export class HomePropietarioPage {
         },
         {
           text: '¿ Posee servicio de TV ? ',
+          icon:'md-desktop',
           handler: () => {
             if (apartamento.tv == "si")
               this.mostrarAlerta("El inmueble si posee servicio de televisión");
@@ -212,6 +212,10 @@ export class HomePropietarioPage {
       ]
     });
     actionSheet.present();
+  }
+
+  addComentario(event,apartamento){
+    this.navCtrl.push(AddComentarioPage,{miApartamento:apartamento,productor:this.me.nombre});
   }
 
   mostrarAlerta(mensaje) {

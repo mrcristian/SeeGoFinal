@@ -9,7 +9,7 @@
   <ion-navbar color="primary">
     <ion-row>
       <ion-col col-12 text-center>
-        <button ion-button clear large><ion-icon class="icon-lg" color="light" name="md-person"></ion-icon></button>
+        <button ion-button clear large><ion-icon class="icon-lg" color="light" name="md-person" (click)="abrirMenu()"></ion-icon></button>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -18,6 +18,11 @@
       </ion-col>
     </ion-row>
   </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
   <ion-row>
     <ion-col col-12 col-md-6 col-lg-6>
       <ion-list>
@@ -28,37 +33,26 @@
             <ion-option value="ninguno">Ninguno</ion-option>
             <ion-option value="costo">Costo</ion-option>
             <ion-option value="tamaño">Tamaño</ion-option>
-            <!--<ion-option value="ubicacion">Ubicación</ion-option>-->
           </ion-select>
         </ion-item>
       </ion-list>
-      <!--<button class="secondary" ion-item clear ><ion-icon name="md-list"></ion-icon>   Criterio</button>-->
-    </ion-col>
-    <ion-col col-12 col-md-6 col-lg-6>
-      <ion-list>
-        <ion-item ion-icon name="md-funnel">
-          <ion-label>¿como deseas que se ordene</ion-label>
-          <ion-select [(ngModel)]="filtro">
-            <ion-option value="ninguno">Ninguno</ion-option>
-            <ion-option value="costo">Costo</ion-option>
-            <ion-option value="tamaño">Tamaño</ion-option>
-            <!--<ion-option value="ubicacion">Ubicación</ion-option>-->
-          </ion-select>
-        </ion-item>
-      </ion-list>
-      <!--<button ion-item clear><ion-icon class="secondary" name="md-funnel"></ion-icon>   Filtro</button>-->
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col col-12>
-      <ion-searchbar large></ion-searchbar>
+    <form #form="ngForm">
+      <ion-col col-10 col-md-5 col-lg-5>
+        <ion-item>
+          <ion-label floating>Digita tu dato a buscar</ion-label>
+          <ion-input name="datoABuscar" type="number" required [(ngModel)]="datoABuscar"></ion-input>
+        </ion-item>
+      </ion-col>
+    </form>
+    <ion-col col-2 col-md-1 col-lg-1>
+      <br>
+      <br>
+      <button ion-button clear large (click)="realizarConsulta()" [disabled]="!form.valid"><ion-icon name="md-search" ></ion-icon></button>
     </ion-col>
   </ion-row>
-
-</ion-header>
-
-
-<ion-content padding>
   <ion-row>
     <ion-col class="card.lg" *ngFor="let item of apartamentos" col-12 col-md-6 col-lg-4>
       <ion-card>
@@ -71,17 +65,17 @@
             {{item.descripcion}}
           </p>
           <ion-row>
-            <ion-col col-2 col-md-2 col-lg-2 >
-              <button ion-button clear large><ion-icon name="information-circle"></ion-icon></button>
+            <ion-col col-2 col-md-2 col-lg-2>
+              <button ion-button clear large (click)="verDetalles($event,item)"><ion-icon name="information-circle"></ion-icon></button>
             </ion-col>
             <ion-col col-2 offset-md-1 col-md-2 offset-lg-1 col-lg-2>
               <button ion-button clear large><ion-icon name="heart"></ion-icon>&nbsp;{{item.interesados}}</button>
             </ion-col>
             <ion-col col-2 offset-md-1 col-md-2 offset-lg-1 col-lg-2>
-              <button ion-button clear large><ion-icon name="chatbubbles"></ion-icon>&nbsp;{{item.comentarios.length}}</button>
+              <button ion-button clear large><ion-icon name="chatbubbles" (click)=addComentario($event,item)></ion-icon>&nbsp;{{item.comentarios.length}}</button>
             </ion-col>
             <ion-col col-2 offset-md-1 col-md-2 offset-lg-1 col-lg-2>
-              <button ion-button clear large><ion-icon name="contact"></ion-icon></button>
+              <button ion-button clear large><ion-icon name="contact" (click)="verContacto($event,item)"></ion-icon></button>
             </ion-col>
           </ion-row>
         </ion-card-content>

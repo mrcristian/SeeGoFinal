@@ -1,0 +1,46 @@
+<!--
+  Generated template for the AddComentario page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Comentarios del inmueble</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let item of comentarios" no-lines>
+    <ion-list-header>
+      {{item.productor}}, dijo:
+    </ion-list-header>
+    <ion-item>
+      <label>
+        {{item.descripcion}}
+      </label>
+    </ion-item>
+    <ion-item>
+      <label>
+        En la fecha: {{item.fecha}}
+      </label>
+    </ion-item>
+  </ion-list>
+  <br>
+  <br>
+  <p text-center>Nuevo comentario</p>
+  <form #form="ngForm">
+    <ion-row>
+      <ion-item ion-col col-12 col-md-12>
+        <ion-label floating>Descripcion</ion-label>
+        <ion-input name="descripcion" type="text" required [(ngModel)]="descripcion "></ion-input>
+      </ion-item>
+    </ion-row>
+  </form>
+  <br>
+  <br>
+  <ion-row>
+    <button ion-col col-5 col-md-5 col-lg-5 ion-button block (click)="exit()">Cancelar</button>
+    <button ion-col offset-2 col-5 offset-md-2 col-md-5 offset-lg-2 col-lg-5 ion-button block (click)="addComentario()" [disabled]="!form.valid">Comentar</button>
+  </ion-row>
+</ion-content>

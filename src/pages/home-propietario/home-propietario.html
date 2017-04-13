@@ -49,7 +49,7 @@
               <button ion-button clear large><ion-icon name="heart"></ion-icon>&nbsp;{{item.interesados}}</button>
             </ion-col>
             <ion-col col-2 offset-md-1 col-md-2 offset-lg-1 col-lg-2>
-              <button ion-button clear large><ion-icon name="chatbubbles"></ion-icon>&nbsp;{{item.comentarios.length}}</button>
+              <button ion-button clear large><ion-icon name="chatbubbles" (click)="addComentario($event,item)"></ion-icon>&nbsp;{{item.comentarios.length}}</button>
             </ion-col>
             <ion-col col-2 offset-md-1 col-md-2 offset-lg-1 col-lg-2>
               <button ion-button clear large (click)="ocultarORevelarInmueble($event,item)"><ion-icon name="eye"></ion-icon></button>

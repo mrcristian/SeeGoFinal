@@ -18,6 +18,25 @@ export class ApartamentoService {
             return Observable.throw(err);
         });
     }
+
+    getBajoElCosto(costoIn: string): Observable<{ data: any }> {
+        let body = { costo: costoIn.toString() };
+        return this.http.post(URL + "/apartamentos/consultarBajoElCosto", body).map(response => {
+            return { data: response.json() };
+        }).catch(err => {
+            return Observable.throw(err);
+        });
+    }
+
+    getBajoElEspacio(sizeIn: string): Observable<{ data: any }> {
+        let body = { size: sizeIn.toString() };
+        return this.http.post(URL + "/apartamentos/consultarBajoElEspacio", body).map(response => {
+            return { data: response.json() };
+        }).catch(err => {
+            return Observable.throw(err);
+        });
+    }
+
     getMisInmuebles(id: string) {
         let body = { idPropietario: id };
         return this.http.post(URL + "/apartamentos/consultarMisInmuebles", body).map(response => {
@@ -44,11 +63,4 @@ export class ApartamentoService {
             return Observable.throw(err);
         });
     }
-    //   all(): Observable<Libro[]> {
-    //     return this.http.get(URL + "/books").map(response => {
-    //       return response.json();
-    //     }).catch(err => {
-    //       return Observable.throw(err);
-    //     });
-    //   }
 }
